@@ -1483,7 +1483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 842adda12e766004990e3cb87c54ad34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeInTargetVolume: 1
+  fadeInTargetVolume: 0.4
   fadeOutTargetVolume: 0
   fadeSpeed: 1
 --- !u!82 &853719155
@@ -1499,7 +1499,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 3f55df73a4f67b34380da461c8e229cd, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0
   m_Pitch: 0.8
   Loop: 1
   Mute: 0
