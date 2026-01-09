@@ -43,7 +43,7 @@ public class PlatformerMovement : MonoBehaviour
         // Set gravity scale to 0 so player won't "fall" 
         rb.gravityScale = 0;
 
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
     
     void Update()
@@ -67,6 +67,7 @@ public class PlatformerMovement : MonoBehaviour
             else
             {
                 // Has jumped. Play jump sound and/or trigger jump animation etc
+                
             }
         }
         // Check if character gained contact with ground this frame
@@ -81,9 +82,9 @@ public class PlatformerMovement : MonoBehaviour
         if (spriteRenderer)
         {
             if (moveInput.x > 0.01f)
-                spriteRenderer.flipX = false;
-            else if (moveInput.x < -0.01f)
                 spriteRenderer.flipX = true;
+            else if (moveInput.x < -0.01f)
+                spriteRenderer.flipX = false;
         }
     }
 
@@ -94,6 +95,7 @@ public class PlatformerMovement : MonoBehaviour
         rb.linearVelocity = velocity;
         
         // Write movement animation code here. (Suggestion: send your current velocity into the Animator for both the x- and y-axis.)
+        animator.SetBool("IsWalking", Mathf.Abs(velocity.x) >= Mathf.Epsilon);
     }
 
     private bool IsGrounded()
@@ -122,6 +124,7 @@ public class PlatformerMovement : MonoBehaviour
             // Is Jumping upwards
             if (velocity.y > 0)
             {
+                animator.SetBool("IsJumping", true);
                 float deceleration = 1;
                 if (jumpReleased) // shorter jump height when releasing the jump-key
                 {
@@ -133,6 +136,7 @@ public class PlatformerMovement : MonoBehaviour
             // Is Falling
             else
             {
+                animator.SetBool("IsJumping", false);
                 // you can add a gravity multiplier here... but how?
                 velocity.y += Physics2D.gravity.y * Time.deltaTime;
             }
